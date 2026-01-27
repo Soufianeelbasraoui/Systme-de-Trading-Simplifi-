@@ -4,22 +4,47 @@ public class Main {
 public static void main(String[] args){
     Scanner s=new Scanner(System.in);
 
-    while (true){
-        System.out.println("--- Système de Trading Simplifié ---");
-        System.out.println("1.Ajouter un actifs: ");
-        System.out.println("2.Ajouter un trader: ");
-        System.out.println("3.Afficher les actifs disponibles: ");
-        System.out.println("4.Créer un portefeuille: ");
-        System.out.println("5.Consulter le portefeuille: ");
-        System.out.println("6.Acheter un actif: ");
-        System.out.println("7.Vendre un actif:  ");
-        System.out.println("8.Historique des transactions: ");
-        System.out.println("Enter un choix: ");
+    while (true) {
+        // Exemple de style pour le menu principal
+        System.out.println("-------------------------------------------");
+        System.out.println("          XTRADE : SIMULATEUR PRO          ");
+        System.out.println("-------------------------------------------");
+        System.out.println(" [1] ESPACE ADMINISTRATEUR (Marché/Actifs) ");
+        System.out.println(" [2] ESPACE TRADER (Investissements)       ");
+        System.out.println(" [0] QUITTER LE SYSTÈME                    ");
+        System.out.println("-------------------------------------------");
+        System.out.print("Saisie : ");
 
-        int choix=s.nextInt();
-        if (choix ==0){
-            System.out.println("Au revoir !");
-            break;
+        int profil = s.nextInt();
+
+        if (profil == 0) break;
+
+        if (profil == 1) {
+            // --- MENU ADMIN ---
+            System.out.println("\n----- Menu Administrateur -----");
+            System.out.println("1. Ajouter un actif (Action/Crypto)");
+            System.out.println("2. Ajouter un nouveau trader");
+            System.out.println("3. Afficher tous les actifs du marché");
+            System.out.println("0. Retour");
+
+            int choixAdmin = s.nextInt();
+            switch (choixAdmin) {
+
+            }
+
+        } else if (profil == 2) {
+            // --- MENU UTILISATEUR ---
+            System.out.println("\n----- Menu Trader -----");
+            System.out.println("1. Créer/Associer un portefeuille");
+            System.out.println("2. Consulter mon portefeuille (Valeur totale)");
+            System.out.println("3. Acheter un actif");
+            System.out.println("4. Vendre un actif");
+            System.out.println("5. Voir mon historique de transactions");
+            System.out.println("0. Retour");
+
+            int choixUser = s.nextInt();
+
+
         }
     }
 }
