@@ -1,31 +1,22 @@
 public class CryptoCurrency extends Asset {
-    private int CurrencyId;
-    private String CurrencyName;
+    private String algorithme;
 
-    public CryptoCurrency(int code, String nom, double prixUnitar, String type, int currencyId, String currencyName) {
-        super(code, nom, prixUnitar, type);
-        CurrencyId = currencyId;
-        CurrencyName = currencyName;
+    public CryptoCurrency(String code, String nom, double prixUnitaire, String type, String algorithme) {
+        super(code, nom, prixUnitaire, type);
+        this.algorithme = algorithme;
     }
 
     @Override
     public String AfficherDescription() {
-        return "";
+        return String.format("[CRYPTO] Code: %s | Nom: %s | Algo: %s | Prix: %.2f€",
+                code, nom, algorithme, prixUnitaire);
     }
 
-    public int getCurrencyId() {
-        return CurrencyId;
+    public String getAlgorithme() {
+        return algorithme;
     }
 
-    public void setCurrencyId(int currencyId) {
-        CurrencyId = currencyId;
-    }
-
-    public String getCurrencyName() {
-        return CurrencyName;
-    }
-
-    public void setCurrencyName(String currencyName) {
-        CurrencyName = currencyName;
+    public void setAlgorithme(String algorithme) {
+        this.algorithme = algorithme;
     }
 }

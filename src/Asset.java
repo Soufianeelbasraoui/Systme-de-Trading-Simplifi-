@@ -1,51 +1,36 @@
 public abstract class Asset {
-    private  int code ;
-    private  String nom;
-    private double prixUnitar;
-    private  String type;
+    protected String code;
+    protected String nom;
+    protected double prixUnitaire;
+    protected String type;
 
-    public Asset(int code, String nom, double prixUnitar, String type) {
+    public Asset(String code, String nom, double prixUnitaire, String type) {
+        if (prixUnitaire <= 0) {
+            throw new IllegalArgumentException("Le prix doit être strictement positif.");
+        }
         this.code = code;
         this.nom = nom;
-        this.prixUnitar = prixUnitar;
+        this.prixUnitaire = prixUnitaire;
         this.type = type;
     }
 
-    public int getCode() {
+    // Getters et Setters
+    public String getCode() {
         return code;
     }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getNom() {
         return nom;
     }
-
-    public void setNom(String nom) {
-        this.nom = nom;
+    public double getPrixUnitaire() {
+        return prixUnitaire;
     }
 
-    public double getPrixUnitar() {
-        return prixUnitar;
-    }
-
-    public void setPrixUnitar(double prixUnitaire) {
+    public void setPrixUnitaire(double prixUnitaire) {
         if (prixUnitaire <= 0) {
             throw new IllegalArgumentException("Le prix doit être positif.");
         }
-        this.prixUnitar = prixUnitaire;
+        this.prixUnitaire = prixUnitaire;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-    // methode abstract AfficherDescription
     public abstract String AfficherDescription();
-
 }
