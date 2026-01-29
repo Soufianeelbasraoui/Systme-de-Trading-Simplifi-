@@ -25,4 +25,30 @@ public class TradingPlatform {
         assets.add(nouvelActif);
         System.out.println("L'actif " + nouvelActif.getNom() + " a été ajouté avec succès.");
     }
+
+    // afficher Actifs
+    public void afficherActifsDisponibles() {
+        System.out.println("\n--------------- CATALOGUE DU MARCHÉ XTRADE -------------------");
+
+        // CORRECTION : On vérifie si la LISTE 'assets' est vide, pas la méthode elle-même
+        if (assets.isEmpty()) {
+            System.out.println("Le marché est actuellement fermé (aucun actif).");
+        } else {
+
+            for (Asset actif : assets) {
+                System.out.println(actif.AfficherDescription());
+            }
+        }
+        System.out.println("------------------------------------------------");
+    }
+    //chercher trader
+    public Trader chercherTrader(int id){
+       for (Trader t:traders){
+           if (t.getId()==id){
+               return t;
+           }
+
+       }
+       return  null;
+    }
 }

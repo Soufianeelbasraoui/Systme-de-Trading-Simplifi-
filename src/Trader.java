@@ -3,8 +3,9 @@ import java.util.List;
 
 public class Trader extends Person {
     private double solde;
-    private Portfolio<Asset> portfolio; //
+    private Portfolio portfolio; //
     private List<Transaction> historique;
+
 
     public Trader(int id, String nom, double soldeInitial) {
         super(id, nom);
@@ -32,5 +33,9 @@ public class Trader extends Person {
 
     public List<Transaction> getHistorique() {
         return historique;
+    }
+
+    public void setPortfolio(Portfolio<Asset> portfolio) {
+        this.portfolio = portfolio;
     }
 }

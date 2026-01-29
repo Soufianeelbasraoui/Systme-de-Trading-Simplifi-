@@ -24,7 +24,7 @@ public class Portfolio<T extends Asset> {
     }
 
     public void afficherPortfolio() {
-        System.out.println("Portefeuille: " + nom + " (ID: " + idPortfolio + ")");
+        System.out.println("Portefeuille: " + nom + " (ID: " + idPortfolio + ")"+"slode :");
         if (actifsPossedes.isEmpty()) {
             System.out.println("Aucun actif détenu.");
         } else {
@@ -34,6 +34,7 @@ public class Portfolio<T extends Asset> {
             });
         }
     }
+
 
     public void consulterPortefeuille() {
         afficherPortfolio();
@@ -58,4 +59,6 @@ public class Portfolio<T extends Asset> {
     public Map<T, Double> getActifsPossedes() {
         return actifsPossedes;
     }
+
+
 }

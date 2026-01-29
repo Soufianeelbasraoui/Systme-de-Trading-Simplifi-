@@ -8,9 +8,11 @@ public class CryptoCurrency extends Asset {
 
     @Override
     public String AfficherDescription() {
-        return String.format("[CRYPTO] Code: %s | Nom: %s | Algo: %s | Prix: %.2f€",
+        return String.format("[CRYPTO]: Code: %s | Nom: %s | Algo: %s | Prix: %.2f€",
                 code, nom, algorithme, prixUnitaire);
     }
+
+
 
     public String getAlgorithme() {
         return algorithme;

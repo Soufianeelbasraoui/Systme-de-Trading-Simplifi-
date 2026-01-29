@@ -11,9 +11,10 @@ public class Stock extends Asset {
     @Override
     public String AfficherDescription() {
 
-        return String.format("[ACTION] Code: %s | Nom: %s | Entreprise: %s | Prix: %.2f€",
+        return String.format("[ACTION]: Code: %s | Nom: %s | Entreprise: %s | Prix: %.2f€",
                 code, nom, company, prixUnitaire);
     }
+
 
     // Getters et Setters
     public int getStockId() {

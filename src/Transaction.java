@@ -6,11 +6,11 @@ public class Transaction {
     private int quantite;
     private double prix;
     private Date date;
-    private Asset actifConcerne;
+    private Asset asset;
 
     public Transaction(String type, Asset actif, int qte, double prix) {
         this.typeDoperation = type;
-        this.actifConcerne = actif;
+        this.asset = actif;
         this.quantite = qte;
         this.prix = prix;
         this.date = new Date();
@@ -18,6 +18,6 @@ public class Transaction {
 
     public void afficherTransaction() {
         System.out.printf("[%s] %s | %s | Qté: %d | Prix Unit: %.2f€ | Total: %.2f€%n",
-                date.toString(), typeDoperation, actifConcerne.getNom(), quantite, prix, (quantite * prix));
+                date.toString(), typeDoperation, asset.getNom(), quantite, prix, (quantite * prix));
     }
 }
