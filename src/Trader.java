@@ -4,7 +4,7 @@ import java.util.List;
 public class Trader extends Person {
     private double solde;
     private Portfolio portfolio; //
-    private List<Transaction> historique;
+    private List<Transaction> transactions;
 
 
     public Trader(int id, String nom, double soldeInitial) {
@@ -12,12 +12,13 @@ public class Trader extends Person {
         this.solde = soldeInitial;
 
         this.portfolio = new Portfolio<>(id, "Portefeuille de " + nom);
-        this.historique = new ArrayList<>();
+        this.transactions = new ArrayList<>();
     }
 
     public double getSolde() {
         return solde;
     }
+
 
     public void setSolde(double solde) {
         this.solde = solde;
@@ -28,11 +29,18 @@ public class Trader extends Person {
     }
 
     public void ajouterTransaction(Transaction t) {
-        this.historique.add(t);
+        this.transactions.add(t);
     }
 
+//    public void enregistrerTransaction(){
+//        for (Transaction t:transactions){
+//            t.afficherTransaction();
+//        }
+//
+//    }
+
     public List<Transaction> getHistorique() {
-        return historique;
+        return transactions;
     }
 
     public void setPortfolio(Portfolio<Asset> portfolio) {
