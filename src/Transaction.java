@@ -1,23 +1,72 @@
 import java.util.Date;
 
 public class Transaction {
-    // Attributs du diagramme
     private String typeDoperation;
     private int quantite;
     private double prix;
     private Date date;
     private Asset asset;
+    private Trader trader;
 
-    public Transaction(String type, Asset actif, int qte, double prix) {
-        this.typeDoperation = type;
-        this.asset = actif;
-        this.quantite = qte;
+    public Transaction(String typeDoperation, int quantite, double prix, Date date, Asset asset,Trader trader) {
+        this.typeDoperation = typeDoperation;
+        this.quantite = quantite;
         this.prix = prix;
-        this.date = new Date();
+        this.date = date;
+        this.asset = asset;
+        this.trader=trader;
+
     }
 
-    public void afficherTransaction() {
-        System.out.printf("[%s] %s | %s | Qté: %d | Prix Unit: %.2f€ | Total: %.2f€%n",
-                date.toString(), typeDoperation, asset.getNom(), quantite, prix, (quantite * prix));
+    public String getTypeDoperation() {
+        return typeDoperation;
+    }
+
+    public void setTypeDoperation(String typeDoperation) {
+        this.typeDoperation = typeDoperation;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public Trader getTrader() {
+        return trader;
+    }
+
+    public void setTrader(Trader trader) {
+        this.trader = trader;
+    }
+    // afiicher  transaction
+    public void  afficherTransaction(){
+        System.out.printf("date: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix));
     }
 }

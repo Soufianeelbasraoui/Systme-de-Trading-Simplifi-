@@ -1,65 +1,52 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class Portfolio<T extends Asset> {
-
+public class Portfolio <T extends Asset>{
     private int idPortfolio;
     private String nom;
+    private List<T> asset;
 
-    private Map<T, Double> asset;
-    private List<Asset> assets=new ArrayList<>();
-
-    // Constructeur
     public Portfolio(int idPortfolio, String nom) {
         this.idPortfolio = idPortfolio;
         this.nom = nom;
-        this.asset = new HashMap<>();
+        this.asset =new ArrayList<>();
     }
-
-    public double calculerValeurTotale() {
-        double total = 0;
-        for (Map.Entry<T, Double> entry : asset.entrySet()) {
-            total += entry.getKey().getPrixUnitaire() * entry.getValue();
-        }
-        return total;
-    }
-
-    public void afficherPortfolio() {
-        System.out.println("Portefeuille: " + this.nom + " (ID: " + this.idPortfolio + ")");
-
-        // On utilise le nom de la Map défini dans ta classe Portfolio
-        if (asset == null || asset.isEmpty()) {
+    // afficher portfio
+    public void afficherPortfio(){
+        System.out.println("Portefeuille: " + nom + " (ID: " + idPortfolio + ")");
+        if (asset ==null || asset.isEmpty()){
             System.out.println("Aucun actif détenu.");
-        } else {
-            asset.forEach((actif, qte) -> {
-                double valeur = actif.getPrixUnitaire() * qte;
-                System.out.printf("- %s (%s) | Qté: %.2f | Valeur Totale: %.2f €%n",
-                        actif.getNom(), actif.getCode(), qte, valeur);
-            });
         }
-    }
-
-
-    public void ajouterQuantite(T actif, double qte) {
-        double qteActuelle = asset.getOrDefault(actif, 0.0);
-        asset.put(actif, qteActuelle + qte);
-    }
-
-    public void retirerQuantite(T actif, double qte) {
-        if (asset.containsKey(actif)) {
-            double qteActuelle =asset.get(actif);
-            if (qteActuelle >= qte) {
-                asset.put(actif, qteActuelle - qte);
+        else {
+            for (Asset a: asset ){
+                double qnt=0;
+                double valeu=a.getPrixUnitaire() * qnt;
+                System.out.println(a.getNom()+ "| Qté: " + qnt +"| Valeur Totale: "+valeu+" €%n");
             }
         }
     }
 
-    // Getters
-    public Map<T, Double> getActifsPossedes() {
+    public int getIdPortfolio() {
+        return idPortfolio;
+    }
+
+    public void setIdPortfolio(int idPortfolio) {
+        this.idPortfolio = idPortfolio;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public List<T> getAsset() {
         return asset;
     }
 
-
+    public void setAsset(List<T> asset) {
+        this.asset = asset;
+    }
 }
