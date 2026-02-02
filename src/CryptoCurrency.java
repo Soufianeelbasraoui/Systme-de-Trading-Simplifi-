@@ -1,16 +1,24 @@
-public class CryptoCurrency extends Asset {
+public class CryptoCurrency extends Asset{
+    private int idcurrence;
 
-    public CryptoCurrency(String code, String nom, double prixUnitaire, String type) {
+    public CryptoCurrency(String code, String nom, double prixUnitaire, String type, int idcurrence) {
         super(code, nom, prixUnitaire, type);
+        this.idcurrence = idcurrence;
+    }
 
+
+
+    public int getIdcurrence() {
+        return idcurrence;
     }
 
     @Override
-    public String AfficherDescription() {
-        return String.format("[CRYPTO]: Code: %s | Nom: %s | Prix: %.2f€",
-                code, nom, prixUnitaire);
+    public String afficherDescription() {
+        return String.format("[CRYPTO]: Code: "+code+ " | Nom:" +nom +"| Prix: "+prixUnitaire + " | type: " +type) ;
     }
 
-
+    public void setIdcurrence(int idcurrence) {
+        this.idcurrence = idcurrence;
+    }
 
 }

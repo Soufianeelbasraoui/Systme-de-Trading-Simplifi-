@@ -1,27 +1,13 @@
-public class Stock extends Asset {
-    private int stockId;
+public class Stock extends Asset{
+    private int idStok;
 
-
-    public Stock(String code, String nom, double prixUnitaire, String type, int stockId) {
+    public Stock(String code, String nom, double prixUnitaire, String type, int idStok) {
         super(code, nom, prixUnitaire, type);
-        this.stockId = stockId;
-
+        this.idStok = idStok;
     }
 
     @Override
-    public String AfficherDescription() {
-
-        return String.format("[ACTION]: Code: %s | Nom: %s | Prix: %.2f€",
-                code, nom, prixUnitaire);
+    public String afficherDescription() {
+        return String.format("[CRYPTO]: Code: "+code+ "| Nom:" +nom +"| Prix: "+prixUnitaire + " | type: " +type) ;
     }
-
-
-    // Getters et Setters
-    public int getStockId() {
-        return stockId;
-    }
-    public void setStockId(int stockId) {
-        this.stockId = stockId;
-    }
-
 }

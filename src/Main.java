@@ -177,7 +177,7 @@ public static void main(String[] args){
                             Asset a = maPlatform.chercherActif(codeActif);
 
                             if (a != null) {
-                                System.out.print("Quantité à vent    : ");
+                                System.out.print("Quantité à vent : ");
                                 double qte = s.nextDouble();
 
                                 // Appeler la méthode de la plateforme

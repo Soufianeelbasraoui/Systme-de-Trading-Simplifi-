@@ -3,47 +3,53 @@ import java.util.List;
 
 public class Trader extends Person {
     private double solde;
-    private Portfolio portfolio; //
-    private List<Transaction> transactions;
+    private List<Transaction> transactions; ;
+    private TradingPlatform tradingPlatform;
+    private  Portfolio portfolio;
 
-
-    public Trader(int id, String nom, double soldeInitial) {
+    public Trader(int id, String nom, double solde) {
         super(id, nom);
-        this.solde = soldeInitial;
-
-        this.portfolio = new Portfolio<>(id, "Portefeuille de " + nom);
-        this.transactions = new ArrayList<>();
+        this.solde = solde;
+        this.transactions =new ArrayList<>();
+        this.tradingPlatform = tradingPlatform;
+        this.portfolio = portfolio;
     }
+
 
     public double getSolde() {
         return solde;
     }
 
-
     public void setSolde(double solde) {
         this.solde = solde;
     }
 
-    public Portfolio<Asset> getPortfolio() {
-        return portfolio;
-    }
-
-    public void ajouterTransaction(Transaction t) {
-        this.transactions.add(t);
-    }
-
-//    public void enregistrerTransaction(){
-//        for (Transaction t:transactions){
-//            t.afficherTransaction();
-//        }
-//
-//    }
-
-    public List<Transaction> getHistorique() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void setPortfolio(Portfolio<Asset> portfolio) {
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public TradingPlatform getTradingPlatform() {
+        return tradingPlatform;
+    }
+
+    public void setTradingPlatform(TradingPlatform tradingPlatform) {
+        this.tradingPlatform = tradingPlatform;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
+    }
+    //methode ajouter transaction
+    public void ajouterTransatction(Transaction t){
+        transactions.add(t);
+
     }
 }
