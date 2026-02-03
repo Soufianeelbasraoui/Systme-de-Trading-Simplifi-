@@ -174,7 +174,7 @@ public class Main {
                          case 2:
                              System.out.println(" type de transactions: 1. BUY | 2. SELL)");
                              break;
-                       //  Trier les transactions par
+                       //  Trier les transactions par 1 date | 2 montant
                          case 3:
                              System.out.println("Trier par : 1 date | 2 montant");
                      }
