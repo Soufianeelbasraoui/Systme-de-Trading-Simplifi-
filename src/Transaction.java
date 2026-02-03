@@ -68,7 +68,8 @@ public class Transaction {
         this.trader = trader;
     }
     // afiicher  transaction
-    public void  afficherTransaction(){
+    public void  afficherDiscription(){
         System.out.printf("\ndate: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
     }
+
 }

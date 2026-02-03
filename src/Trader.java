@@ -52,4 +52,5 @@ public class Trader extends Person {
         transactions.add(t);
 
     }
+
 }

@@ -18,7 +18,7 @@ public class Main {
             System.out.println("5. Consulter mon portefeuille: ");
             System.out.println("6. Acheter un actif: ");
             System.out.println("7. Vendre un actif: ");
-            System.out.println("8. Voir mon historique de transactions: ");
+            System.out.println("8. Analyse des transactions : ");
             System.out.println("0. QUITTER LE SYSTÈME ");
             System.out.print("Saisie : ");
             int choix = s.nextInt();
@@ -147,25 +147,61 @@ public class Main {
                     }
                     break;
 
-                case 8:
-                    System.out.print("Entrez votre ID pour l'historique : ");
-                    int idHist = s.nextInt();
-                    Trader t5 = maPlatfrom.chercherTrader(idHist);
-                    if (t5 !=null){
-                        System.out.println("\n--- HISTORIQUE DE " + t5.getNom().toUpperCase() + " ---");
-                        if (t5.getTransactions().isEmpty()){
-                            System.out.println("Aucune transaction effectuée.");
-                        }
-                        else {
-                            for (Transaction tran: t5.getTransactions()){
-                                tran.afficherTransaction();
+              case 8:
+                 while (true){
+                     System.out.println("1- Voir historique de transactions (general | Trader): ");
+                     System.out.println("2- Filtrer les transactions par Type (BUY | SELL): ");
+                     System.out.println("3- Trier les transactions par (date |montant):");
+                     System.out.println("0- Quitter Historique: ");
+                     System.out.print("Saisie : ");
+                     int choixHis=s.nextInt();
+                     if (choixHis ==0) break;
+                     switch (choixHis){
+                         //Voir historique de transactions
+                         case 1:
+                             System.out.println("1- Voir historique de : 1. general | 2. Trader");
+                             int historique=s.nextInt();
+                             if (historique == 1){
 
-                            }
-                        }
-                    } else {
-                        System.out.println(" ID introuvable.");
-                    }
-                    break;
+                                    maPlatfrom.afficherToutesTransactions();
+
+
+                             } else {
+
+                             }
+                             break;
+                      //Filtrer les transactions par Type
+                         case 2:
+                             System.out.println(" type de transactions: 1. BUY | 2. SELL)");
+                             break;
+                       //  Trier les transactions par
+                         case 3:
+                             System.out.println("Trier par : 1 date | 2 montant");
+                     }
+
+
+
+                 }
+
+//                    System.out.print("Entrez votre ID pour l'historique : ");
+//                    int idHist = s.nextInt();
+//                    Trader t5 = maPlatfrom.chercherTrader(idHist);
+//                    if (t5 !=null){
+//                        System.out.println("\n--- HISTORIQUE DE " + t5.getNom().toUpperCase() + " ---");
+//                        if (t5.getTransactions().isEmpty()){
+//                            System.out.println("Aucune transaction effectuée.");
+//                        }
+//                        else {
+//                            for (Transaction tran: t5.getTransactions()){
+//                                tran.afficherTransaction();
+//
+//                            }
+//                        }
+//                    } else {
+//                        System.out.println(" ID introuvable.");
+//                    }
+//                    break;
+
 
 
             }

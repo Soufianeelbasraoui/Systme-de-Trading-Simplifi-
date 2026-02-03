@@ -112,11 +112,11 @@ public class TradingPlatform {
     //vender asset
     public void venderAsset(Trader t,Asset a,int  qte){
         double total= a.getPrixUnitaire()* qte;
-
-        if (t.getSolde() <total){
-            System.out.println("Solde insuffisant !");
-            return;
-        }
+//
+//        if (t.getSolde() < total){
+//            System.out.println("Solde insuffisant !");
+//            return;
+//        }
         t.setSolde(t.getSolde()+total);
         t.getPortfolio().retirerQuantite(a,qte);
 
@@ -126,6 +126,13 @@ public class TradingPlatform {
         System.out.println("Vente effectuée avec succès !");
 
     }
+    //afficherToutesTransactions
+    public void afficherToutesTransactions() {
+        traders.stream()
+                .flatMap(t -> t.getTransactions().stream())
+                .forEach(Transaction::afficherDiscription);
+    }
+
 
 
 
