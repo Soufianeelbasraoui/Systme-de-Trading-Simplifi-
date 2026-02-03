@@ -69,7 +69,8 @@ public class Transaction {
     }
     // afiicher  transaction
     public void  afficherDiscription(){
-        System.out.printf("\ndate: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
+        System.out.printf("date: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
     }
+
 
 }

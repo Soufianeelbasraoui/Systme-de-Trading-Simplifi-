@@ -21,10 +21,8 @@ public class TradingPlatform {
 
         for (int i = 0; i < assets.size(); i++) {
             Asset a = assets.get(i);
-
-           // double nouveauPrix = 100 + (200 - 100) * random.nextDouble();
             double nouveauPrix = random.nextDouble(100,1000);
-            // 2. On arrondit à deux décimales pour l'esthétique
+
             nouveauPrix = Math.round(nouveauPrix * 100.0) / 100.0;
 
             a.setPrixUnitaire(nouveauPrix);
@@ -132,11 +130,6 @@ public class TradingPlatform {
                 .flatMap(t -> t.getTransactions().stream())
                 .forEach(Transaction::afficherDiscription);
     }
-
-
-
-
-
 
 
 }
