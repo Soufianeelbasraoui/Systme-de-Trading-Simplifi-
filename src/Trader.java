@@ -12,7 +12,7 @@ public class Trader extends Person {
         this.solde = solde;
         this.transactions =new ArrayList<>();
         this.tradingPlatform = tradingPlatform;
-        this.portfolio = portfolio;
+        this.portfolio =new Portfolio<>(id, nom + "_Portfolio");
     }
 
 

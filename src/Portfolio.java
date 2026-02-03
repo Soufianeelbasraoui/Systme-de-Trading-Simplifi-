@@ -19,15 +19,42 @@ public class Portfolio <T extends Asset>{
         }
         else {
             for (Asset a: asset ){
-                double qnt=0;
-                double valeu=a.getPrixUnitaire() * qnt;
-                System.out.println(a.getNom()+ "| Qté: " + qnt +"| Valeur Totale: "+valeu+" €%n");
+                double qnt=a.getQuantite();
+                double valeu=a.prixUnitaire*qnt;
+                System.out.println("Code: " +a.code + "| Le Nom: "+a.getNom()+ "| Qté: " +a.quantite   +"| Valeur Totale: "+valeu +" €%n");
             }
         }
     }
 
-    public int getIdPortfolio() {
-        return idPortfolio;
+
+// Ajouter quantité
+public void ajouterQuantite(T a, int qte){
+        if (!asset.contains(a)){
+            a.setQuantite(qte);
+            asset.add(a);
+        }
+        else {
+           a.setQuantite(a.getQuantite() + qte);
+        }
+}
+
+
+
+    public void retirerQuantite(T a, int qte) {
+        for (T item : asset) {
+            if (item.getCode().equalsIgnoreCase(a.getCode())) {
+                if (item.getQuantite() >= qte) {
+                    item.setQuantite(item.getQuantite() - qte);
+                    if (item.getQuantite() == 0)
+                        asset.remove(item);
+                    return;
+                } else {
+                    System.out.println(" Erreur : Quantité insuffisante en portefeuille.");
+                    return;
+                }
+            }
+        }
+        System.out.println(" Erreur : Actif non possédé.");
     }
 
     public void setIdPortfolio(int idPortfolio) {

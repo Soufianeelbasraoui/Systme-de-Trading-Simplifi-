@@ -1,8 +1,8 @@
 public class Stock extends Asset{
     private int idStok;
 
-    public Stock(String code, String nom, double prixUnitaire, String type, int idStok) {
-        super(code, nom, prixUnitaire, type);
+    public Stock(String code, String nom, double prixUnitaire, String type,int quantite, int idStok) {
+        super(code, nom, prixUnitaire, type,quantite);
         this.idStok = idStok;
     }
 

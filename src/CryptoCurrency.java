@@ -1,12 +1,11 @@
 public class CryptoCurrency extends Asset{
     private int idcurrence;
 
-    public CryptoCurrency(String code, String nom, double prixUnitaire, String type, int idcurrence) {
-        super(code, nom, prixUnitaire, type);
+
+    public CryptoCurrency(String code, String nom, double prixUnitaire, String type, int quantite, int idcurrence) {
+        super(code, nom, prixUnitaire, type, quantite);
         this.idcurrence = idcurrence;
     }
-
-
 
     public int getIdcurrence() {
         return idcurrence;

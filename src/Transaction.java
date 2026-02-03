@@ -18,6 +18,8 @@ public class Transaction {
 
     }
 
+
+
     public String getTypeDoperation() {
         return typeDoperation;
     }
@@ -67,6 +69,6 @@ public class Transaction {
     }
     // afiicher  transaction
     public void  afficherTransaction(){
-        System.out.printf("date: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix));
+        System.out.printf("\ndate: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
     }
 }
