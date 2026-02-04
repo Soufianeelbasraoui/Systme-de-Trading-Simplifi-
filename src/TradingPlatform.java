@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TradingPlatform {
     private List<Asset> assets=new ArrayList<>();
@@ -126,10 +123,82 @@ public class TradingPlatform {
     }
     //afficherToutesTransactions
     public void afficherToutesTransactions() {
+//        traders.stream()
+//                .flatMap(t -> t.getTransactions().stream())
+//                .forEach(Transaction::afficherDiscription);
+        for (Trader t : traders) {
+            for (Transaction tr : t.getTransactions()) {
+                tr.afficherDiscription();
+            }
+        }
+
+
+    }
+
+//Afficher toutes les transactions d’un trader donné
+    public void afficherTrader(int idChercher){
+        traders.stream().filter(t->t.getId() == idChercher)
+                .flatMap(t1 ->t1.getTransactions().stream())
+                .forEach(Transaction::afficherDiscription);
+
+    }
+    public void filtrerTransactionsParActif(String codeActif) {
         traders.stream()
                 .flatMap(t -> t.getTransactions().stream())
+                .filter(tr -> tr.getAsset().getCode().equalsIgnoreCase(codeActif))
+                .forEach(Transaction::afficherDiscription);
+    }
+    //Filtrer les transactions par : type (BUY / SELL), actif financier (ex : AAPL, BTC, EUR/USD),
+    public void filtrerTrnasactionType(String type){
+        traders.stream()
+                .flatMap(t->t.getTransactions().stream())
+                .filter(tr->tr.getTypeDoperation().equalsIgnoreCase(type))
                 .forEach(Transaction::afficherDiscription);
     }
 
 
+    public void TrierTransactionsDate(){
+        traders.stream()
+                .flatMap(t->t.getTransactions().stream())
+                .sorted(Comparator.comparing(Transaction::getDate))
+                .forEach(Transaction::afficherDiscription);
+    }
+
+    public void TrierTransactionsMontant(){
+        traders.stream().flatMap(t->t.getTransactions().stream())
+                .sorted(Comparator.comparing(Transaction::getPrix))
+                .forEach(Transaction::afficherDiscription);
+    }
+    public void calculerMontantParActif(String code) {
+      double totalValue= traders.stream()
+                .flatMap(t -> t.getTransactions().stream())
+                .filter(tr -> tr.getAsset().getCode().equalsIgnoreCase(code))
+                .mapToDouble(tr -> tr.getQuantite() * tr.getPrix())
+                .sum();
+        System.out.println("montant total : "+totalValue);
+
+        long totalQte=traders.stream()
+                .flatMap(t->t.getTransactions().stream())
+                .filter(tr -> tr.getAsset().getCode().equalsIgnoreCase(code))
+                .mapToLong(tq->tq.getQuantite())
+                .sum();
+        System.out.println("Total Qtn: "+ totalQte);
+    }
+public  void totalachats(String type){
+        double totatalAchat=traders.stream()
+                .flatMap(t->t.getTransactions().stream())
+                .filter(ta->ta.getTypeDoperation().equalsIgnoreCase(type))
+                .mapToDouble(taq->taq.getPrix() * taq.getQuantite())
+                .sum();
+    System.out.println("number Totale de achate: "+ totatalAchat);
+}
+
+public void totalVende(String type){
+        double totalVende=traders.stream()
+                .flatMap(t->t.getTransactions().stream())
+                .filter(tv->tv.getTypeDoperation().equalsIgnoreCase(type))
+                .mapToDouble(tav->tav.getPrix() * tav.getQuantite())
+                .sum();
+    System.out.println("number Total de vents: "+totalVende);
+}
 }

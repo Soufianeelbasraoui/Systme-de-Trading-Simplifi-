@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Transaction {
     private String typeDoperation;
@@ -71,6 +73,8 @@ public class Transaction {
     public void  afficherDiscription(){
         System.out.printf("date: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
     }
+
+
 
 
 }

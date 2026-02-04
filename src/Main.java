@@ -1,3 +1,4 @@
+import java.util.Date;
 import  java.util.Scanner;
 
 public class Main {
@@ -149,9 +150,10 @@ public class Main {
 
               case 8:
                  while (true){
-                     System.out.println("1- Voir historique de transactions (general | Trader): ");
-                     System.out.println("2- Filtrer les transactions par Type (BUY | SELL): ");
+                     System.out.println("1- Voir historique de transactions: (general | Trader) ");
+                     System.out.println("2- Filtrer les transactions par: Type | actif | dates ");
                      System.out.println("3- Trier les transactions par (date |montant):");
+                     System.out.println("4- Calculer de volume total: ");
                      System.out.println("0- Quitter Historique: ");
                      System.out.print("Saisie : ");
                      int choixHis=s.nextInt();
@@ -162,48 +164,82 @@ public class Main {
                              System.out.println("1- Voir historique de : 1. general | 2. Trader");
                              int historique=s.nextInt();
                              if (historique == 1){
-
                                     maPlatfrom.afficherToutesTransactions();
 
-
                              } else {
-
+                                 System.out.println("Enter votre id pour consulter le historique: ");
+                                 int idChercher=s.nextInt();
+                                 maPlatfrom.afficherTrader(idChercher);
                              }
                              break;
                       //Filtrer les transactions par Type
                          case 2:
-                             System.out.println(" type de transactions: 1. BUY | 2. SELL)");
+                             System.out.println("Filtrer les transactions par: 1. type | 2. actif | 3. dates");
+                             int typ = s.nextInt();
+
+                             if (typ == 1) {
+                                 System.out.println("Choisir le type: 1- BUY | 2- SELL");
+                                 int bs = s.nextInt();
+
+                                 if (bs == 1) {
+                                     System.out.println("----------  BUY ------------");
+                                     maPlatfrom.filtrerTrnasactionType("ACHAT");
+                                     System.out.println("----------------------------");
+                                 } else if (bs == 2) {
+                                     System.out.println("----------  SELL ------------");
+                                     maPlatfrom.filtrerTrnasactionType("Vendre");
+                                     System.out.println("-----------------------------");
+                                 } else {
+                                     System.out.println("Choix invalide.");
+                                 }
+                             }
+                             else if (typ==2){
+                                 System.out.println("Enter votre code : ");
+                                 String codeActif=s.next();
+                                 maPlatfrom.filtrerTransactionsParActif(codeActif);
+
+                             }
+                             else {
+
+                             }
                              break;
-                       //  Trier les transactions par 1 date | 2 montant
+                       // Trier les transactions par 1 date | 2 montant
                          case 3:
                              System.out.println("Trier par : 1 date | 2 montant");
+                             int typedm=s.nextInt();
+                             if (typedm==1){
+                              maPlatfrom.TrierTransactionsDate();
+                             }
+                             else if (typedm==2){
+                               maPlatfrom.TrierTransactionsMontant();
+                             }
+                             break;
+                         case 4:
+                             System.out.println("Calculer: 1. volume total actif| 2. le montant total : achats | ventes");
+                             int choixv=s.nextInt();
+                             if (choixv == 1){
+                                 System.out.println("--------- volume total actif ------------");
+                                 System.out.println("Entrez le code de l'actif (ex: BTC):  :");
+                                 String codev =s.next();
+                                 maPlatfrom.calculerMontantParActif(codev);
+                                 System.out.println("------------------------------------------");
+                             } else if (choixv==2) {
+                                 System.out.println("1. achats | 2.ventes : ");
+                                 int choit=s.nextInt();
+                                 if (choit==1){
+                                     System.out.println("------------- achats ------------------");
+                                     maPlatfrom.totalachats("ACHAT");
+                                     System.out.println("---------------------------------------");
+                                 }
+                                 else if (choixv==2){
+                                     System.out.println("--------------vents --------------------");
+                                     maPlatfrom.totalVende("Vendre");
+                                     System.out.println("-----------------------------------------");
+                                 }
+
+                             }
                      }
-
-
-
                  }
-
-//                    System.out.print("Entrez votre ID pour l'historique : ");
-//                    int idHist = s.nextInt();
-//                    Trader t5 = maPlatfrom.chercherTrader(idHist);
-//                    if (t5 !=null){
-//                        System.out.println("\n--- HISTORIQUE DE " + t5.getNom().toUpperCase() + " ---");
-//                        if (t5.getTransactions().isEmpty()){
-//                            System.out.println("Aucune transaction effectuée.");
-//                        }
-//                        else {
-//                            for (Transaction tran: t5.getTransactions()){
-//                                tran.afficherTransaction();
-//
-//                            }
-//                        }
-//                    } else {
-//                        System.out.println(" ID introuvable.");
-//                    }
-//                    break;
-
-
-
             }
         }
     }
