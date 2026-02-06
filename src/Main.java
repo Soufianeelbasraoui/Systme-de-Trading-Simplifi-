@@ -302,9 +302,23 @@ public class Main {
                                 }
                                 break;
                             case 2:
+                                System.out.println("------------------------------------");
+                                maPlatfrom.instrumentLePlusEchange();
+                                System.out.println("-------------------------------------");
 
                                 break;
                             case 3:
+                                System.out.println("1. BUY | 2. SELL");
+                                int is=s.nextInt();
+                                if (is==1){
+                                 maPlatfrom.montantTotalBuy();
+                                }
+                                else if (is ==2){
+                                    maPlatfrom.montantTotalSel();
+                                }
+                                else {
+                                    System.out.println("Accune actif ");
+                                }
 
                         }
 

@@ -66,18 +66,7 @@ public class TradingPlatform {
         return  null;
 
     }
-    public void affichertrader(int idtrader){
-        int i=0;
-        while (i<traders.size()){
-            Trader t=traders.get(i);
-            if (t.getId()==idtrader){
-                System.out.println("nom"+t.getNom());
-            }
-            i++;
-        }
 
-
-    }
     //methode chercher actif
     public Asset chercherAsset(String code) {
         for (Asset a : assets) {
@@ -94,9 +83,16 @@ public class TradingPlatform {
             System.out.println("Le marché est actuellement fermé (aucun actif).");
         }
         else {
-            for (Asset a: assets){
+//            for (Asset a: assets){
+//                System.out.println(a.afficherDescription());
+//            }
+            int i=0;
+            while (i<assets.size()){
+                Asset a=assets.get(i);
                 System.out.println(a.afficherDescription());
+                i++;
             }
+
         }
         System.out.println("---------------------------------------------------------------");
     }
@@ -267,6 +263,49 @@ public void totalVende(String type){
                 System.out.println("Aucun Asset trouvé !");
             }
     }
+
+    public void instrumentLePlusEchange() {
+        traders.stream()
+                .flatMap(t -> t.getTransactions().stream())
+                .collect(Collectors.groupingBy(
+                        Transaction::getAsset,
+                        Collectors.summingInt(Transaction::getQuantite)
+                ))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .ifPresent(entry -> {
+                    System.out.println("Instrument le plus échangé : "
+                            + entry.getKey().getNom());
+                    System.out.println("Volume total : "
+                            + entry.getValue());
+                });
+    }
+    public void montantTotalBuy() {
+
+        double totalBuy = traders.stream()
+                .flatMap(t -> t.getTransactions().stream())
+                .filter(tr -> tr.getTypeDoperation().equalsIgnoreCase("ACHAT"))
+                .mapToDouble(tr -> tr.getQuantite() *tr.getPrix())
+                .sum();
+
+
+        System.out.println("------------------------------------");
+        System.out.println("Montant total BUY : " + totalBuy);
+        System.out.println("------------------------------------");
+    }
+//Calcul du montant total des BUY
+    public void montantTotalSel(){
+        double totalSell = traders.stream()
+                .flatMap(t -> t.getTransactions().stream())
+                .filter(tr -> tr.getTypeDoperation().equalsIgnoreCase("Vendre"))
+                .mapToDouble(tr -> tr.getQuantite() * tr.getPrix())
+                .sum();
+        System.out.println("------------------------------------");
+        System.out.println("Montant total SELL : " + totalSell);
+        System.out.println("------------------------------------");
+    }
+
+
 
 }
 

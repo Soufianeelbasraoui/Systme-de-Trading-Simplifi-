@@ -73,6 +73,15 @@ public abstract class Asset {
 //afficherdescrption
     public abstract String  afficherDescription();
 
-
+    @Override
+    public String toString() {
+        return "Asset{" +
+                "code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prixUnitaire=" + prixUnitaire +
+                ", type='" + type + '\'' +
+                ", quantite=" + quantite +
+                '}';
+    }
 
 }
