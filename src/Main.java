@@ -20,6 +20,8 @@ public class Main {
             System.out.println("6. Acheter un actif: ");
             System.out.println("7. Vendre un actif: ");
             System.out.println("8. Analyse des transactions : ");
+            System.out.println("9. Analyse de performance par trader: ");
+            System.out.println("10. Analyse globale du marché simulé: 2");
             System.out.println("0. QUITTER LE SYSTÈME ");
             System.out.print("Saisie : ");
             int choix = s.nextInt();
@@ -205,7 +207,7 @@ public class Main {
                              break;
                        // Trier les transactions par 1 date | 2 montant
                          case 3:
-                             System.out.println("Trier par : 1 date | 2 montant");
+                             System.out.println("Trier par : 1 date | 2 montant ");
                              int typedm=s.nextInt();
                              if (typedm==1){
                               maPlatfrom.TrierTransactionsDate();
@@ -213,6 +215,7 @@ public class Main {
                              else if (typedm==2){
                                maPlatfrom.TrierTransactionsMontant();
                              }
+
                              break;
                          case 4:
                              System.out.println("Calculer: 1. volume total actif| 2. le montant total : achats | ventes");
@@ -238,10 +241,77 @@ public class Main {
                                  }
 
                              }
+                             break;
                      }
                  }
+                 break;
+                case 9:
+                   while (true){
+                       System.out.println("1. volume total échangé par trader: " );
+                       System.out.println("2. nombre total d’ordres passés: " );
+                       System.out.println("3. Classement des traders par volume (top N traders): ");
+                       System.out.println("0- Analyse de performance: ");
+                       int volumt=s.nextInt();
+                       if (volumt ==0) break;
+                       switch (volumt){
+                           case 1:
+                               System.out.println("------------- volume total ---------------");
+                               System.out.println("Enter votre id: ");
+                               int id=s.nextInt();
+                               maPlatfrom.totalVolumeTrader(id);
+                               System.out.println("------------------------------------------");
+                               break;
+                           case 2:
+                               System.out.println("--------nombre total d’ordres passés-------------");
+                               System.out.println("Enter votre id: ");
+                               int idv=s.nextInt();
+                               maPlatfrom.calculNbrOrder(idv);
+                               System.out.println("------------------------------------------------");
+                               break;
+                           case 3:
+                               System.out.println("------------------------------------------------");
+                               System.out.println("Enter voter top N trader");
+                               int tpn=s.nextInt();
+                               maPlatfrom.classementTraderParVolum(tpn);
+                       }
+
+
+                   }
+                   break;
+                case 10:
+                    while (true){
+                        System.out.println("1. Calcul du volume total échangé par instrument financier: " );
+                        System.out.println("2. Identification de l’instrument le plus échangé: " );
+                        System.out.println("3. Calcul du montant total des BUY et des SELL séparémen: ");
+                        System.out.println("0- Analyse de performance: ");
+                        int volumt=s.nextInt();
+                        if (volumt ==0) break;
+                        switch (volumt){
+                            case 1:
+                                System.out.println("1. Stok | 2. Crypto");
+                                int i=s.nextInt();
+                                if (i==1){
+                                    System.out.println("------------- Stok --------------");
+                                    maPlatfrom.volumeTptalChangerAsset("Stock");
+                                    System.out.println("---------------------------------");
+                                }
+                                else if (i==2){
+                                    System.out.println("------------ Crypto --------------");
+                                    maPlatfrom.volumeTptalChangerAsset("Crypto");
+                                    System.out.println("----------------------------------");
+                                }
+                                break;
+                            case 2:
+
+                                break;
+                            case 3:
+
+                        }
+
+
+                    }
+
             }
         }
     }
 }
-

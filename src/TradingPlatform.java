@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TradingPlatform {
     private List<Asset> assets=new ArrayList<>();
@@ -63,6 +64,19 @@ public class TradingPlatform {
             }
         }
         return  null;
+
+    }
+    public void affichertrader(int idtrader){
+        int i=0;
+        while (i<traders.size()){
+            Trader t=traders.get(i);
+            if (t.getId()==idtrader){
+                System.out.println("nom"+t.getNom());
+            }
+            i++;
+        }
+
+
     }
     //methode chercher actif
     public Asset chercherAsset(String code) {
@@ -73,7 +87,6 @@ public class TradingPlatform {
         }
         return null;
     }
-
     //affficher actif
     public void afficherAsset(){
         System.out.println("\n--------------- CATALOGUE DU MARCHÉ XTRADE -------------------");
@@ -201,4 +214,59 @@ public void totalVende(String type){
                 .sum();
     System.out.println("number Total de vents: "+totalVende);
 }
+
+
+    //volume total échangé par trader
+    public void totalVolumeTrader(int id){
+        if (chercherTrader(id)!=null){
+           double traderId=traders.stream()
+                    .flatMap(t->t.getTransactions().stream())
+                    .filter(tid->tid.getTrader().getId()==id)
+                    .mapToDouble(tm->tm.getQuantite() * tm.getPrix())
+                    .sum();
+            System.out.println(" volume total :" +traderId);
+        }
+        else {
+            System.out.println("accune trader trouver !");
+        }
+
+    }
+    //Calcul du nombre total d’ordres passés
+    public void calculNbrOrder(int code){
+        double voulunTr= traders.stream()
+                 .flatMap(t->t.getTransactions().stream())
+                 .filter(tr->tr.getTrader().getId()==code)
+                 .mapToDouble(trv->trv.getQuantite())
+                 .sum();
+        System.out.println("nombre total d’ordres passés: "+voulunTr);
+
+    }
+    // Classement des traders par volume (Top N traders)
+    public void classementTraderParVolum(int n) {
+        System.out.println("--- Top " + n + " Traders ---");
+
+        traders.stream()
+                .sorted(Comparator.comparingDouble(Trader::getVolumeTotal).reversed()).limit(n).forEach(t -> {
+                    System.out.printf("Volume: ", t.getVolumeTotal());
+                    t.afficherTrader();
+                });
+    }
+
+    //volume total échangé par trader
+    public void volumeTptalChangerAsset(String type){
+
+            int assetVolume=traders.stream()
+                    .flatMap(t->t.getTransactions().stream())
+                    .filter(tid->tid.getAsset().getType().equals(type))
+                    .mapToInt(tm->tm.getQuantite())
+                    .sum();
+            if (assetVolume >0){
+                System.out.println(" volume total de :"+type+ ": " +assetVolume);
+            }
+            else {
+                System.out.println("Aucun Asset trouvé !");
+            }
+    }
+
 }
+

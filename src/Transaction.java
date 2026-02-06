@@ -74,7 +74,4 @@ public class Transaction {
         System.out.printf("date: " +date.toString()+" | "+ typeDoperation+ "|"+ asset.getNom() +" | Qte: "+ quantite +" | " +"Prix Unit: "+prix +" | Totale:  " +(quantite * prix) +"\n");
     }
 
-
-
-
 }
